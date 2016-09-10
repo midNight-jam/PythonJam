@@ -21,9 +21,15 @@ def main():
   arrayOfTuples = myTuple *3
   print(arrayOfTuples)
   (a0,a1,a2,a3,a4,a5,a6,a7,a8) = arrayOfTuples
+
+  #(a0,a1,a2,a3,a4,a5,a6,a7,a8,a9) = arrayOfTuples
+  # ValueError: not enough values to unpack (expected 10, got 9)
+
   print(a2)
   for t in arrayOfTuples:
     print(t)
+  #carrayOfTuples = myTuple *'c'  TypeError: can't multiply sequence by non-int of type 'str'
+
 
 if __name__=='__main__':
   main()
