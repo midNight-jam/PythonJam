@@ -9,6 +9,10 @@ def useBits():
     b =11
     BitsUtil.swap_using_XOR(a,b)
     BitsUtil.xorWO_XOR_operator(a,b)
+    print(" bits count 13 == ", BitsUtil.bitsCount(13))
+    print(" is power of 2 == ", BitsUtil.isPowerOfTwo(1))
+    BitsUtil.evenOddBits(5);
+    print(' ',BitsUtil.isKthBitSet(5,3));
 
 def main():
     print('I am main')
