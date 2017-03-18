@@ -6,10 +6,9 @@ class Employee(object):
     self.first = first
     self.last = last
     self.pay = pay
-    # self.email = first + '.' + last +'@dark.com'
+    self.email = first + '.' + last +'@dark.com'
     Employee.no_of_emps +=1 # incrementing the count of the employees
 
-  @property
   def fullName(self): # self is mandatory
     return '{} {}'.format(self.first, self.last)
 
@@ -37,14 +36,15 @@ class Employee(object):
 
 
   def __str__(self):
-    return "Employee ( '{}','{}')".format(self.fullName, self.email)
+    return "Employee ( '{}','{}')".format(self.fullName(), self.email)
 
   def __add__(self, other):
     return self.pay + other.pay
 
   @property
   def email(self):
-    return '{}.{}@email.com'.format(self.first, self.last)
+    return '{}.{}@emeail.con'.format(self.first,self.last)
+
 
 emp1 = Employee('Jayam', 'Malviya', 45000)
 emp2 = Employee('Test', 'Test', 9000)
@@ -52,8 +52,8 @@ emp2 = Employee('Test', 'Test', 9000)
 print(emp1.email)
 print(emp2.email)
 
-print(emp1.fullName)  # self ois passed automatically
-# print(Employee.fullName(emp1))  # manually have to specify self
+print(emp1.fullName())  # self ois passed automatically
+print(Employee.fullName(emp1))  # manually have to specify self
 
 Employee.raise_amount = 1.5
 print(emp1.pay)
@@ -88,10 +88,8 @@ print(Employee.isWorkDay(mydate))
 
 
 print(repr(emp1))
+print(emp1)
 
 print(emp1 + emp2)
 
 print(emp2.email)
-
-emp2.fullName = 'ZZZZ CCCC'
-print(emp2.fullName)
