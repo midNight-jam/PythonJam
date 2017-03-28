@@ -25,7 +25,7 @@ for n in my_nums:
   # after getting the last value from the generator and still if fetching we get an exception "StopIteration"
   # meaning that the entire Genrator has been exhausted
 
-# using list comprehension also returns a genrator
+# using list comprehension also returns a generator
 more_nums = ( i * i for i in [1, 2, 3, 4, 5, 6])
 for n in more_nums:
   print(n)
@@ -69,7 +69,7 @@ def main():
   t2 = time.clock()
   # for p in peoples:
   #   print(p)
-  print(t2-t1)
+  print(t2-t1) # 0.108871386168 "Slower"
 
   print("=========Now generators=========")
   t1 = time.clock()
@@ -78,7 +78,7 @@ def main():
   # for p in peoples:
   #   print(p)
 
-  print(t2-t1)
+  print(t2-t1)  #0.00324593502656 "Faster"
 
 
 
