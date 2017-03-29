@@ -65,3 +65,6 @@ from operator import attrgetter
 s_emps = sorted(emps, key = attrgetter('sal'), reverse= True ) # using attergetter for key
 print(s_emps)
 
+print 'First module {}'.format(__name__)
+# if we are running the file directly then python sets this variable
+# if the module was used by another file , then it contains the module name
