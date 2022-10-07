@@ -3,6 +3,8 @@ import numpy as np
 
 
 N = 8
+
+
 def merge(A, p, q, r):
     """Merge two sorted sublists/subarrays to a larger sorted sublist/subarray.
     Arguments:
@@ -50,7 +52,7 @@ def merge(A, p, q, r):
     # print("Execution Merge Time: --- %s seconds ---" % (end_time_merge - start_time_merge))
 
 
-def merge_sort(A, p=0, r=None):
+def merge_sort(A, use_insertion_sort=False, p=0, r=None):
     """Sort the elements in the sublist/subarray a[p:r+1].
     Arguments:
     A -- a list/array containing the sublist/subarray to be merged
@@ -61,24 +63,29 @@ def merge_sort(A, p=0, r=None):
     # If r is not given, set to the index of the last element of the list/array.
     if r is None:
         r = len(A) - 1
-    length = (r - p) + 1
-    if length < N :
-        # print('Smaller : ' + str(r - p))
-        insertion_sort(A, p, length)
-        return
     if p >= r:  # 0 or 1 element?
         return
+
+    portion = (r - p) + 1
+
+    if use_insertion_sort and portion < N:
+        # print('Smaller : ' + str(r - p))
+        insertion_sort(A, p, portion)
+        return
+
     q = (p + r) // 2  # midpoint of A[p: r]
-    merge_sort(A, p, q)  # recursively sort A[p: q]
-    merge_sort(A, q + 1, r)  # recursively sort A[q+1: r]
+    merge_sort(A, use_insertion_sort, p, q)  # recursively sort A[p: q]
+    merge_sort(A, use_insertion_sort, q + 1, r)  # recursively sort A[q+1: r]
     merge(A, p, q, r)  # merge A[p: q] and A[q+1: r] into A[p: r]
 
-def  merge_sort_helper(A, p=0, r=None):
+
+def merge_sort_helper(A, use_insertion_sort=False, p=0, r=None):
     start_time_sort = time.time()
-    merge_sort(A)
+    merge_sort(A, use_insertion_sort)
     end_time_sort = time.time()
     print("Execution Sort Time: --- %s seconds ---" % (
-            end_time_sort - start_time_sort))  # input should be bigger to avoid error of time mesurement
+        end_time_sort - start_time_sort))  # input should be bigger to avoid error of time mesurement
+
 
 def insertion_sort(A, start, n):
     """Sort a list or numpy array.
@@ -88,7 +95,7 @@ def insertion_sort(A, start, n):
     n -- portion size in A
     """
     # Traverse the list or array from index 1 to n-1.
-    print("Insert : start : " + str(start) + " portion : "+ str(n))
+    # print("Insert : start : " + str(start) + " portion : "+ str(n))
     for i in range(1, n):
         key = A[start + i]
 
@@ -104,15 +111,26 @@ def insertion_sort(A, start, n):
         # Insert key at the correct position in the list or array.
         A[start + j + 1] = key
 
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print('Pythan')
     # list1 = [11, 1, 51, 1, 5, 3]
-    list1 = np.random.randint(-5000, 5000, size=500)
-    print(list1)
+    input = np.random.randint(-5000, 5000, size=10000)
+    print("Input Size : " + str(input.size))
+
+    list1 = np.copy(input)
     list1test = list(list1)
+    print("vanilla MergeSort")
     merge_sort_helper(list1)
-    print(list1)
-    print(list1 == sorted(list1test))
+    # print(list1)
+    # print(list1 == sorted(list1test))
+
+    list2 = np.copy(input)
+    list2test = list(list2)
+    print("MergeSort + InsertionSort for N : " + str(N))
+    merge_sort_helper(list2, use_insertion_sort=True)
+    # print(list2)
+    # print(list2 == sorted(list2test))
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
